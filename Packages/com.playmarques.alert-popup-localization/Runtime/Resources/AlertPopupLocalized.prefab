@@ -152,10 +152,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
   m_StringReference:
     m_TableReference:
-      m_TableCollectionName: AlertPopup
+      m_TableCollectionName: 
     m_TableEntryReference:
       m_KeyId: 0
-      m_Key: DefaultAlertMessage
+      m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
@@ -519,10 +519,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
   m_StringReference:
     m_TableReference:
-      m_TableCollectionName: AlertPopup
+      m_TableCollectionName: 
     m_TableEntryReference:
       m_KeyId: 0
-      m_Key: BtnConfirm
+      m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
@@ -1638,10 +1638,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Components.LocalizeStringEvent
   m_StringReference:
     m_TableReference:
-      m_TableCollectionName: AlertPopup
+      m_TableCollectionName: 
     m_TableEntryReference:
       m_KeyId: 0
-      m_Key: BtnCancel
+      m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []

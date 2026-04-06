@@ -64,16 +64,19 @@ namespace Playmarques.AlertLocalization
         public static AlertPopup Show(string entry, bool confirm = true, bool cancel = false, bool input = false)
         {
             Instance.messageStringEvent.StringReference.SetReference(KEY_TABLE, entry);
+            Instance.messageStringEvent.RefreshString();
             return AlertPopup.Show(null, confirm, cancel, input);
         }
         public static AlertPopup Warning(string entry, bool confirm = true, bool cancel = false, bool input = false)
         {
             Instance.messageStringEvent.StringReference.SetReference(KEY_TABLE, entry);
+            Instance.messageStringEvent.RefreshString();
             return AlertPopup.Warning(null, confirm, cancel, input);
         }
         public static AlertPopup Error(string entry, bool confirm = true, bool cancel = false)
         {
             Instance.messageStringEvent.StringReference.SetReference(KEY_TABLE, entry);
+            Instance.messageStringEvent.RefreshString();
             return AlertPopup.Error(null, confirm, cancel);
         }
     }

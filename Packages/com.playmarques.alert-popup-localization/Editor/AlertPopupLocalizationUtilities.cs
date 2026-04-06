@@ -7,11 +7,11 @@ using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 
-public static class AlertPopupLocalizationTableUtility
+public static class AlertPopupLocalizationUtilities
 {
     private const string TableName = AlertPopupLocalized.KEY_TABLE;
-    private const string TablesFolder = "Assets/Localization/AlertPopup/Tables";
-    private const string LocalesFolder = "Assets/Localization/AlertPopup/Locales";
+    private const string TablesFolder = "Localization/Tables/";
+    private const string LocalesFolder = "Localization/Locales/";
     private const string SettingsFolder = "Assets/Localization/Settings";
     private const string SettingsAssetName = "Localization Settings.asset";
 
@@ -29,7 +29,7 @@ public static class AlertPopupLocalizationTableUtility
         EnsureAtLeastOneLocaleExists();
         var locales = LocalizationEditorSettings.GetLocales();
 
-        EnsureFolderExists(TablesFolder);
+        string tablePath = AlertPopupUtilities.EnsureFolderExists(TablesFolder);
 
         var collection = LocalizationEditorSettings.GetStringTableCollection(TableName);
 
@@ -37,7 +37,7 @@ public static class AlertPopupLocalizationTableUtility
         {
             collection = LocalizationEditorSettings.CreateStringTableCollection(
                 TableName,
-                TablesFolder,
+                tablePath,
                 locales
             );
 
@@ -69,7 +69,7 @@ public static class AlertPopupLocalizationTableUtility
         if (settings != null)
             return;
 
-        EnsureFolderExists(SettingsFolder);
+        AlertPopupUtilities.EnsureFolderExists(SettingsFolder);
 
         settings = ScriptableObject.CreateInstance<LocalizationSettings>();
 
@@ -96,10 +96,10 @@ public static class AlertPopupLocalizationTableUtility
         if (locales != null && locales.Count > 0)
             return;
 
-        EnsureFolderExists(LocalesFolder);
+        var path = AlertPopupUtilities.EnsureFolderExists(LocalesFolder);
 
         var englishLocale = Locale.CreateLocale(SystemLanguage.English);
-        var assetPath = AssetDatabase.GenerateUniqueAssetPath($"{LocalesFolder}/en.asset");
+        var assetPath = AssetDatabase.GenerateUniqueAssetPath(path+"en.asset");
 
         AssetDatabase.CreateAsset(englishLocale, assetPath);
         LocalizationEditorSettings.AddLocale(englishLocale);
@@ -135,26 +135,6 @@ public static class AlertPopupLocalizationTableUtility
                     table.AddEntry(keyId, pair.Value);
                 }
             }
-        }
-    }
-
-    private static void EnsureFolderExists(string folderPath)
-    {
-        var parts = folderPath.Split('/');
-        if (parts.Length == 0 || parts[0] != "Assets")
-            return;
-
-        string currentPath = "Assets";
-
-        for (int i = 1; i < parts.Length; i++)
-        {
-            string nextPath = currentPath + "/" + parts[i];
-            if (!AssetDatabase.IsValidFolder(nextPath))
-            {
-                AssetDatabase.CreateFolder(currentPath, parts[i]);
-            }
-
-            currentPath = nextPath;
         }
     }
 }

@@ -9,37 +9,23 @@ public static class AlertPopupLocalizationMenu
     [MenuItem("GameObject/UI (Canvas)/Alert Popup Localized", false, 10)]
     public static void CreateAlertPopup(MenuCommand menuCommand)
     {
-        AlertPopupLocalizationTableUtility.EnsureTableExistsAndIsInitialized();
-        AssetDatabase.SaveAssets();
+        AlertPopupLocalizationUtilities.EnsureTableExistsAndIsInitialized();
 
-        var prefab = Resources.Load<GameObject>("AlertPopupLocalized");
+        string name = "AlertPopupLocalized";
+        var prefab = AlertPopupUtilities.LoadPrefabFromAssets(name);
+        if (prefab == null) prefab = AlertPopupUtilities.ClonePrefabFromResourcesToAssets(name, OnClone);
 
-        if (prefab == null)
-        {
-            Debug.LogError("AlertPopup prefab does not found in Resources/AlertPopup.");
-            return;
-        }
-        var binder = prefab.GetComponent<AlertPopupLocalized>();
-        binder.LocalizeStringEventsToDefault();
-
-        AssetDatabase.SaveAssets();
-        AssetDatabase.Refresh();
-
-        PrefabUtility.SavePrefabAsset(prefab);
-        GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
-
-        if (instance == null)
-        {
-            instance = Object.Instantiate(prefab);
-        }
-
-        instance.name = "AlertPopupLocalized";
-
-        GameObjectUtility.SetParentAndAlign(instance, menuCommand.context as GameObject);
-        Undo.RegisterCreatedObjectUndo(instance, "Create Alert Popup");
-        Selection.activeObject = instance;
+        var instance = AlertPopupUtilities.AddPrefabToScene(prefab, menuCommand);
 
         EditorSceneManager.MarkSceneDirty(instance.scene);
+    }
+    private static void OnClone(GameObject prefab)
+    {
+        var binder = prefab.GetComponent<AlertPopupLocalized>();
+        binder.LocalizeStringEventsToDefault();
+        EditorUtility.SetDirty(binder);
+        EditorUtility.SetDirty(prefab);
+        
     }
 }
 #endif

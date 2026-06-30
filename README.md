@@ -25,6 +25,7 @@ Tips:
 2. You may send an action with void or string parameter to ListenerConfirm. The second is for when having Text Input.
 3. Avoid calling it from Awake since Instance may be still null while not initialized.
 4. You have to set up all your localized messages for alert on the table AlertPopup.
+5. Use `SetInputValue(value)` to update the input text without triggering ListenerUpdateInput again. Use `SetInputValue(value, true)` when you need to notify the listener.
 
 Examples:
 1. AlertPopup.Error(exception);
@@ -41,3 +42,4 @@ Examples:
             AlertPopup.Instance.DisableConfirm(true);
         }
     }
+4. AlertPopup.Instance.SetInputValue("123");

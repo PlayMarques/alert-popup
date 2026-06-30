@@ -113,6 +113,22 @@ public class AlertPopup : MonoBehaviour
         inputField.interactable = !disable;
         return this;
     }
+    public AlertPopup SetInputValue(string value, bool notify = false)
+    {
+        inputValue = value;
+
+        if (notify)
+        {
+            inputField.text = value;
+        }
+        else
+        {
+            inputField.SetTextWithoutNotify(value);
+        }
+
+        inputField.MoveTextEnd(false);
+        return this;
+    }
     public AlertPopup LimitInput(int characterLimit = -1)
     {
         inputField.characterLimit = characterLimit < 0 ? inputField.characterLimit : characterLimit;

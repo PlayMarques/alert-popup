@@ -2,7 +2,10 @@
   "name": "Playmarques.AlertPopup",
   "rootNamespace": "Playmarques.AlertPopup",
   "references": [
-    "Unity.TextMeshPro"
+    "UnityEngine.UI",
+    "Unity.TextMeshPro",
+    "Unity.Localization",
+    "Unity.ResourceManager"
   ],
   "includePlatforms": [],
   "excludePlatforms": [],

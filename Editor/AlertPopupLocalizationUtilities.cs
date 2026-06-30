@@ -1,5 +1,5 @@
 #if UNITY_EDITOR
-using Playmarques.AlertLocalization;
+using Playmarques.AlertPopup;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.Localization;
@@ -9,7 +9,7 @@ using UnityEngine.Localization.Settings;
 
 public static class AlertPopupLocalizationUtilities
 {
-    private const string TableName = AlertPopupLocalized.KEY_TABLE;
+    private const string TableName = AlertPopup.KeyTable;
     private const string TablesFolder = "Localization/Tables/";
     private const string LocalesFolder = "Localization/Locales/";
     private const string SettingsFolder = "Assets/Localization/Settings";
@@ -17,9 +17,9 @@ public static class AlertPopupLocalizationUtilities
 
     private static readonly Dictionary<string, string> DefaultEntries = new()
     {
-        { AlertPopupLocalized.KEY_DEFAULT_MESSAGE, "loading..." },
-        { AlertPopupLocalized.KEY_BTN_CONFIRM, "Confirm" },
-        { AlertPopupLocalized.KEY_BTN_CANCEL, "Cancel" }
+        { AlertPopup.KeyDefaultMessage, "loading..." },
+        { AlertPopup.KeyBtnConfirm, "Confirm" },
+        { AlertPopup.KeyBtnCancel, "Cancel" }
     };
 
     public static void EnsureTableExistsAndIsInitialized()
@@ -99,7 +99,7 @@ public static class AlertPopupLocalizationUtilities
         var path = AlertPopupUtilities.EnsureFolderExists(LocalesFolder);
 
         var englishLocale = Locale.CreateLocale(SystemLanguage.English);
-        var assetPath = AssetDatabase.GenerateUniqueAssetPath(path+"en.asset");
+        var assetPath = AssetDatabase.GenerateUniqueAssetPath(path + "en.asset");
 
         AssetDatabase.CreateAsset(englishLocale, assetPath);
         LocalizationEditorSettings.AddLocale(englishLocale);

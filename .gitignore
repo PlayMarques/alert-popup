@@ -10,6 +10,8 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
+/[Ss]and[Bb]ox
+/[Ss]and[Bb]ox~/
 *.log
 
 # MemoryCaptures can get excessive in size.

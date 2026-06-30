@@ -52,7 +52,7 @@ namespace Playmarques.AlertLocalization
         {
             Instance.SetLocalizedArguments(Instance.messageStringEvent, argOrEntries);
         }
-        public static void SetButtonCopnfirmArgs(params object[] argOrEntries)
+        public static void SetButtonConfirmArgs(params object[] argOrEntries)
         {
             Instance.SetLocalizedArguments(Instance.btnConfirmStringEvent, argOrEntries);
         }
